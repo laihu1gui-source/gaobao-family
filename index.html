@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>择据 · 看学校，更看毕业后的路</title>
+  <meta name="theme-color" content="#183653">
+  <style>
+    :root{--bg:#f4f3ef;--paper:#fff;--ink:#182825;--muted:#63716e;--line:#d8dedb;--green:#0f6654;--pale:#e9f3ee;--orange:#a34f22;--warm:#fff0e6}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 system-ui,"Microsoft YaHei",sans-serif}button,input,select{font:inherit}a{color:var(--green)}
+    .wrap{width:min(1180px,calc(100% - 32px));margin:auto}header{background:var(--paper);border-bottom:1px solid var(--line)}header .wrap{padding:20px 0}h1{margin:0 0 4px;font-size:26px}h2,h3,p{margin-top:0}.sub,.muted{color:var(--muted)}
+    .notice{margin:20px 0 14px;padding:12px 14px;border-left:4px solid var(--orange);background:var(--warm);color:#6e381e}.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:18px}
+    details.method{margin:0 0 18px;background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:13px 16px}details.method summary{cursor:pointer;font-weight:750;color:var(--green)}details.method ol{margin:10px 0 6px;padding-left:21px;color:var(--muted)}details.method li{margin:4px 0}.rule{color:var(--orange);font-size:12px}
+    .form{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}.form label{display:grid;gap:5px;color:var(--muted);font-size:12px;font-weight:650}.form input,.form select{width:100%;min-height:40px;border:1px solid #aebbb7;border-radius:5px;padding:8px;background:white;color:var(--ink)}
+    .checks{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px 18px}.checks label{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:500;color:var(--ink)}.checks input{width:auto;min-height:auto}.actions{display:flex;align-items:center;gap:12px;margin-top:14px}.actions button{border:0;border-radius:5px;padding:10px 16px;background:var(--green);color:white;font-weight:700;cursor:pointer}
+    .summary{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}.stat{min-width:155px;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:7px}.stat strong{display:block;font-size:22px}.stat span{color:var(--muted);font-size:12px}
+    .table-scroll{overflow-x:auto}.trend-table{width:100%;border-collapse:collapse}.trend-table th,.trend-table td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}.trend-table th{color:var(--muted);font-size:11px}.trend-table small{display:block;color:var(--muted)}.trend-years{display:flex;gap:4px;min-width:245px}.trend-year{display:grid;place-items:center;min-width:45px;padding:4px;background:var(--bg);color:var(--muted);text-decoration:none;border-radius:4px;font-size:10px}.trend-year strong{font-size:11px}.trend-year.strong{background:var(--pale);color:var(--green)}.trend-year.confirmed{background:#eef1ef;color:var(--ink)}.trend-year.partial{background:var(--warm);color:var(--orange)}.trend-score{font-size:18px;font-weight:750;white-space:nowrap}
+    .compare-pick{display:flex;align-items:center;gap:6px;margin:10px 0;color:var(--green)}.compare-table{width:100%;min-width:720px;border-collapse:collapse}.compare-table th,.compare-table td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}.compare-table th{width:130px;background:var(--pale)}.compare-table td{min-width:180px}.compare-message{color:var(--orange)}
+    .cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.card{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:18px}.topline{display:flex;justify-content:space-between;gap:12px}.school{color:var(--muted);font-size:12px}.major{font-size:19px;font-weight:760;margin:3px 0}.pill{display:inline-block;padding:3px 7px;border-radius:4px;background:var(--pale);color:var(--green);font-size:11px;font-weight:750}.pill.warn{background:var(--warm);color:var(--orange)}
+    .verdict{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 7px;padding:11px 12px;background:var(--pale);border-left:4px solid var(--green)}.verdict.caution{background:var(--warm);border-color:var(--orange)}.verdict span{display:block;color:var(--muted);font-size:10px}.verdict strong{font-size:15px}.verdict p{grid-column:1/-1;margin:0;color:var(--muted);font-size:12px}.evidence-detail{margin:0 0 14px;color:var(--muted);font-size:11px}.evidence-detail summary{cursor:pointer;color:var(--green);font-weight:700}.evidence-detail div{margin-top:5px}
+    .record{margin:10px 0;padding:8px;border-left:2px solid var(--line);overflow-wrap:anywhere}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:14px 0}.facts div{background:var(--paper);padding:8px 10px}.facts span{display:block;color:var(--muted);font-size:10px}.facts b{font-size:14px}.career{border-top:1px solid var(--line);padding-top:12px}.career ul{padding-left:18px;margin:7px 0}.career li{margin:5px 0}.risk{color:var(--orange)}.sources{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12px}.empty{padding:24px;background:var(--warm);color:var(--orange);border-radius:7px}.footer{padding:18px 0 35px;color:var(--muted);font-size:12px}
+    @media(max-width:800px){.form{grid-template-columns:1fr 1fr}.cards{grid-template-columns:1fr}}.trend-table{min-width:1000px}@media(max-width:520px){.verdict{grid-template-columns:1fr}.form{grid-template-columns:1fr}.checks{grid-column:1}.facts{grid-template-columns:1fr 1fr}}
+    .factor-band{border-top:1px solid var(--line);padding:18px 0;margin-bottom:18px}.factor-band h2{font-size:19px}.factor-band>.form:not(.weights){grid-template-columns:minmax(0,2fr) minmax(0,1fr)}.factor-table{min-width:1050px}.factor-table td{max-width:340px;overflow-wrap:anywhere}.factor-table th:nth-child(1){width:155px}.factor-table th:nth-child(2){width:210px}.factor-table th:nth-child(3){width:110px}.factor-summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:14px 0}.factor-summary>div{border-left:3px solid var(--line);padding-left:10px}.factor-summary>p,.factor-summary>details{grid-column:1/-1;margin:0}.factor-summary b{display:block;font-size:15px}.factor-summary small{display:block;color:var(--muted)}.weights{grid-template-columns:repeat(5,minmax(0,1fr));margin-top:12px}.weight-toggle{display:flex;align-items:center;gap:7px;margin-top:12px}.factor-table details{font-size:12px}.factor-table summary{cursor:pointer;color:var(--green)}@media(max-width:800px){.factor-summary{grid-template-columns:1fr 1fr}.weights{grid-template-columns:1fr 1fr}}@media(max-width:520px){.factor-band>.form:not(.weights){grid-template-columns:1fr}.weights{grid-template-columns:1fr 1fr}.factor-summary b{font-size:14px}}
+    .audit-band{padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}.audit-band .form{grid-template-columns:1fr 1fr}.audit-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:14px 0}.audit-stages>div{border-left:3px solid var(--line);padding-left:10px}.audit-stages b,.audit-stages small{display:block}.audit-stages small{color:var(--muted)}.audit-band details{margin:12px 0}.audit-band summary{cursor:pointer;color:var(--green)}.audit-band h3{font-size:16px;margin:14px 0 6px}.audit-projects{padding-left:20px}.audit-band .record{font-size:13px}.audit-band code{font-size:11px;overflow-wrap:anywhere}@media(max-width:520px){.audit-band .form{grid-template-columns:1fr}.audit-stages{grid-template-columns:1fr 1fr}}
+    .content-band{border-top:1px solid var(--line);padding:20px 0;margin-bottom:18px}.content-band h2{font-size:20px}.content-band h3{font-size:16px;margin:18px 0 8px}.content-columns{display:grid;grid-template-columns:1fr 1fr;gap:20px}.content-band ul{padding-left:20px}.content-work{border-bottom:1px solid var(--line);padding:12px 0;overflow-wrap:anywhere}.content-work summary{cursor:pointer;font-weight:650}.content-work summary small{display:block;color:var(--muted);font-weight:400}.content-excerpt{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;margin:14px 0}.content-excerpt img{display:block;width:96px;height:132px;object-fit:contain;background:#e7ece9}.content-excerpt small{color:var(--muted)}.content-excerpt blockquote{margin:6px 0;border-left:2px solid var(--green);padding-left:10px}.content-excerpt p{margin:6px 0;color:var(--muted)}.content-pages{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:12px 0}.content-pages button{width:40px;height:36px;border:1px solid var(--line);background:white;border-radius:4px;cursor:pointer}.content-pages button:disabled{opacity:.4;cursor:default}@media(max-width:520px){.content-columns{grid-template-columns:1fr;gap:0}.content-excerpt{grid-template-columns:72px minmax(0,1fr);gap:10px}.content-excerpt img{width:72px;height:100px}}
+  </style>
+  <link rel="stylesheet" href="parent_workspace.css?v=20261030-mobile-decision4">
+  <link rel="stylesheet" href="family_decision.css?v=20261018-learning1">
+</head>
+<body>
+  <a class="skip-link" href="#discoverHeading">跳到学校与专业</a>
+  <header class="app-header"><div class="wrap header-inner"><a class="brand" href="?view=discover" aria-label="择据首页"><span class="brand-mark" aria-hidden="true">择</span><span>择据<small>升学与职业选择</small></span></a><nav aria-label="工作台导航"><a href="?view=discover" data-view="discover" aria-current="page">找学校</a><a href="?view=shortlist" data-view="shortlist">对比 <span id="savedCount">0</span></a><a href="?view=research" data-view="research">信息依据</a></nav><button class="profile-link" type="button" id="editProfile">修改条件</button></div></header>
+  <main class="wrap" id="mainContent">
+    <section class="intro"><div><p class="intro-kicker">给家长的第一步</p><h1>这个分数，哪些学校专业更有就业出路？</h1><p>输入分数和选科，先看少量值得核实的去处，再比较收入、稳定性和必须接受的代价。</p></div><div class="coverage-note"><strong>北京考生 · 首批验证版</strong><span>2026招生参考 · 89所学校 · 130个项目子集</span><a href="?view=research" data-view="research">了解资料边界</a></div></section>
+    <div class="decision-layout">
+    <aside class="profile-panel panel" id="familyProfile" aria-labelledby="profileHeading">
+      <div class="profile-title"><h2 id="profileHeading">孩子的条件</h2><span>北京</span></div>
+      <p id="profileSaveStatus" class="profile-save" role="status">条件与对比仅保存在本机浏览器</p>
+      <div class="form">
+        <label class="score-field">高考分数 / 预估分<input id="score" name="score" type="number" inputmode="numeric" min="0" max="750" value="550" autocomplete="off" aria-describedby="scoreHint scoreError"></label>
+        <span id="scoreHint" class="field-help">使用2026专业组线参考，不代表录取概率。</span><span id="scoreError" class="field-error" role="status"></span>
+        <div class="checks" id="subjects"><strong>孩子的选科</strong><label><input type="checkbox" value="物理" checked>物理</label><label><input type="checkbox" value="化学" checked>化学</label><label><input type="checkbox" value="生物">生物</label><label><input type="checkbox" value="政治">政治</label><label><input type="checkbox" value="历史">历史</label><label><input type="checkbox" value="地理">地理</label></div>
+      </div>
+      <details class="profile-advanced"><summary>更多条件（学历、学费、收入、工作环境）</summary><label class="degree-field">学历规划<select id="degreePlan"><option value="bachelor">优先本科毕业就业</option><option value="graduate">可以考虑读研</option><option value="undecided">暂未确定</option></select></label><div class="advanced-grid"><label>最高学费（元/年）<input id="tuition" name="tuition" type="number" inputmode="numeric" min="0" value="30000" autocomplete="off"></label><label>期望综合年收入（万元，可不填）<input id="salaryTarget" name="salaryTarget" type="number" inputmode="decimal" min="0" max="1000" step="0.5" value="8" autocomplete="off"></label></div><div class="checks"><label><input id="budget" type="checkbox" checked>只看组线不高于孩子分数</label><label><input id="near" type="checkbox">只看组线附近 −15 至 +30 分</label></div><div class="checks" id="conditions"><strong>可以考虑的工作条件</strong><label><input type="checkbox" value="倒班" checked>倒班</label><label><input type="checkbox" value="偏远" checked>偏远 / 基层</label><label><input type="checkbox" value="野外" checked>野外 / 井下 / 外业</label><label><input type="checkbox" value="海上" checked>海上工作</label></div><p class="field-help">条件来自职业方向线索，具体岗位仍需复核。</p><div class="checks"><label><input id="marketOnly" type="checkbox">仅看有专业相关市场原文的方向</label></div></details>
+      <div class="actions"><button id="run" type="button">查看我的候选</button><span class="action-note">先给你少量值得核实的选择</span></div>
+      <p class="profile-boundary">当前覆盖北京普通本科的部分专业。低于组线、选科不符和学费超预算的项目按条件排除。</p>
+    </aside>
+    <div class="decision-content">
+    <section id="discoverView" aria-labelledby="discoverHeading">
+      <div class="section-title"><div><p class="section-kicker">结果</p><h2 id="discoverHeading" tabindex="-1">先看这几条路</h2><p id="familySummary" class="muted"></p></div><button type="button" class="text-button" id="resetFilters">重新填写</button></div>
+      <section class="decision-guide" aria-label="本轮结果的用途和边界"><div><span>先看</span><strong>分数是否够得着</strong></div><div><span>再看</span><strong>毕业后有没有明确入口</strong></div><div><span>最后看</span><strong>工资、稳定性和证据强弱</strong></div></section>
+      <div class="result-caption"><span id="scope" role="status"></span><span>组线参考 ≠ 专业录取线</span></div>
+      <p class="sort-explain" id="sortExplain" role="status"></p>
+      <div class="summary" id="summary"></div>
+      <section class="cards" id="results" aria-label="匹配学校与专业"></section>
+      <p class="results-footnote">未找到就业材料的专业仍保留。缺少数据不等于没有机会；有招聘也不等于能保证就业。</p>
+      <section class="result-adjustments" aria-label="调整结果与查看口径">
+        <details class="result-tools"><summary>搜索学校/专业，或调整结果顺序</summary><div class="result-toolbar"><label class="search-label"><span class="sr-only">关键词</span><input id="query" name="query" type="search" placeholder="输入学校、专业或工作名称" autocomplete="off"></label><label class="sort-label">排序<select id="sort"><option value="signal" selected>优先看有职业入口的</option><option value="fit">优先看分数接近的</option><option value="stable">优先看稳定材料</option><option value="salary">优先看薪酬证据</option><option value="evidence">优先看资料较全的</option><option value="school">按学校查看</option></select></label></div></details>
+        <details class="advanced-results-filter"><summary>按学校类型和审核范围筛选</summary><div class="advanced-results-grid"><label class="sort-label">学校类型<select id="institutionFilter"><option value="all">全部学校</option><option value="985">历史985</option><option value="211">历史211</option><option value="doubleFirstClass">第二轮双一流</option><option value="industry">行业特色</option><option value="vocational">职业本科/职业院校</option><option value="joint">中外合作大学</option><option value="military">军队院校</option></select></label><label class="sort-label">本轮审计范围<select id="readinessFilter"><option value="all">全部项目</option><option value="audited">固定30项深核样本</option><option value="outside">未纳入本轮深核</option></select></label></div></details>
+        <details class="result-boundary"><summary>这些数字分别能说明什么</summary><div id="parentTermGuide" class="term-guide" aria-label="三个关键口径"></div></details>
+        <details class="salary-audit" id="salaryAudit"><summary>收入数字说明</summary><div id="salaryAuditBody"></div></details>
+      </section>
+    </section>
+    <section id="shortlistView" hidden aria-labelledby="shortlistHeading"><div class="section-title"><div><h2 id="shortlistHeading" tabindex="-1">把几个选择放在一起看。</h2><p class="muted">先排除不能接受的工作方式，再比较收入、稳定性和证据强弱。</p></div><button type="button" class="secondary-button" id="printChoices">打印决策单与对比</button></div><section class="panel" id="comparison"><h3>已选项目 · 最多4项</h3><div id="compareMessage" class="compare-message" role="status"></div><div class="table-scroll" id="compareBody"></div></section></section>
+    <section id="researchView" hidden aria-labelledby="researchHeading"><div class="section-title"><div><h2 id="researchHeading" tabindex="-1">判断背后的信息依据</h2><p class="muted">先用家长读法理解结果；需要复核时，再进入原始资料和研究工具。</p></div></div>
+    <div class="notice"><strong>边界：</strong>专业组投档线不等于专业录取线；岗位与政策信号不等于就业率。当前结果只用于发现值得核验的选择。</div>
+    <section class="parent-reading panel" aria-labelledby="parentReadingHeading"><h2 id="parentReadingHeading">家长先看这三层</h2><div><article><span>第一层 · 能不能报</span><strong>选科、学费、专业组线</strong><p>这是初筛，不是专业录取概率。正式填报必须补位次、专业录取线、章程和体检要求。</p></article><article><span>第二层 · 有没有路</span><strong>跨年岗位、多个雇主、专业门槛</strong><p>招聘只能证明市场入口出现过；拟聘、拟录用、报到和留任必须分开。</p></article><article><span>第三层 · 值不值得走</span><strong>工资、稳定性、地点与代价</strong><p>工资目前主要是本科职业族基线，不是校级结果；四年后的变化单独作为风险。</p></article></div><p class="confidence-legend"><b>A/B</b> 可用于同口径比较　<b>C</b> 仅作范围参考　<b>D/E</b> 只防止空白，不进入高薪排序。证据覆盖高，只表示资料较全，不表示项目更好。</p></section>
+    <details class="research-section project-coverage"><summary>全库资料底数 · 89校130个项目</summary><div id="projectCoverageSummary" class="project-coverage-body"></div><a href="project_evidence_coverage.md" target="_blank" rel="noopener noreferrer">打开逐项目缺口清单</a></details>
+    <section class="panel"><h2>固定分数下的职业机会</h2><p id="goalStatus" class="risk" role="status"></p><div class="table-scroll"><table class="trend-table"><thead><tr><th>职位路径</th><th>分数预算内的学校 / 专业</th><th>就业入口与结果</th><th>综合年收入</th><th>稳定性 / 代价</th></tr></thead><tbody id="opportunityBody"></tbody></table></div></section>
+    <details class="research-workbench"><summary><span>研究与审计工作台</span><small>展开查看职业资料、30方向核验、批量名单和23因子模型</small></summary><div class="research-workbench-body">
+    <details class="method"><summary>岗位前景怎么判断</summary><ol><li>需求是否跨年份重复出现，而不是一批临时招聘。</li><li>是否有多个独立雇主，避免把一家单位当成整个市场。</li><li>招聘是否明确要求本专业，判断专业壁垒和跨专业竞争。</li><li>岗位数与毕业供给是否匹配，并区分招聘、拟录用、报到和留任。</li><li>工资、合同、地点、倒班、野外和离职率是否值得承受。</li></ol><div class="rule"><strong>结论规则：</strong>岗位前景和学校就业把握分开。前者可以由市场信号判断；后者没有本校本专业同届分母，就必须显示“暂不能判断”。</div><div class="rule"><strong>平替规则：</strong>2022年至今的历史材料均可参考，并标明届次与发布年。雇主端招聘证明入口，拟录用证明筛选结果；相邻专业和其他学校只作类比。未建立经验校准，不设任意折价百分比、不推算就业概率。</div></details>
+    <details class="research-section"><summary>2022—2026岗位族年度面板 · 首批5类</summary><p class="muted">证据覆盖度表示资料完整度，不代表就业成功率。</p><div class="table-scroll"><table class="trend-table"><thead><tr><th>岗位族</th><th>家长可得到的判断</th><th>证据覆盖度</th><th>年度连续性</th><th>家长结论与最大缺口</th></tr></thead><tbody id="trendBody"></tbody></table></div></details>
+    <section class="content-band" aria-labelledby="contentHeading">
+      <h2 id="contentHeading">职业内容与机会解释</h2>
+      <p id="contentStatus" class="muted" role="status"></p>
+      <div class="form">
+        <label>资料范围<select id="contentScope"><option value="current">当前条件内职业方向</option><option value="all">全资料库（含未接入招生路径）</option></select></label>
+        <label>职业 / 专业主题<select id="contentTopic"></select></label>
+        <label>内容检索<input id="contentQuery" type="search" placeholder="岗位、学校、门槛、博主"></label>
+        <label>核对进度<select id="contentStatusFilter"><option value="">全部进度</option><option value="deep_analysis">有逐作品研究卡（非事实核验）</option><option value="reviewed_excerpts">部分摘录已核</option><option value="machine_draft">有机器稿（未校正）</option><option value="title_only">仅标题线索</option></select></label>
+        <label>候选因子<select id="contentFactor"><option value="">全部因子</option><option value="pay">薪酬</option><option value="qualification">学历资格</option><option value="destination">单位岗位</option><option value="cost_and_risk">代价风险</option><option value="outcome">就业节点</option><option value="method">样本方法</option><option value="time_and_place">时间地域</option></select></label>
+        <label>内容类型<select id="contentType"><option value="">全部类型</option><option value="guess">猜工资标题</option><option value="experience">分享 / 调研标题</option><option value="employer_lead">雇主薪酬线索</option><option value="explanation">专业 / 职业介绍等</option></select></label>
+        <label>公开材料学历<select id="contentDegree"><option value="">分列全部学历</option><option value="本科">本科</option><option value="硕士">硕士</option><option value="博士">博士</option><option value="专科">专科</option></select></label>
+        <label>作品移除测试<select id="contentExclude"><option value="">保留全部作品</option></select></label>
+      </div>
+      <div id="contentBrief"></div><div id="contentSchools"></div><div id="contentEvidence"></div>
+      <div class="content-pages"><span id="contentCount" role="status"></span><button id="contentPrev" title="上一页" aria-label="上一页">&larr;</button><button id="contentNext" title="下一页" aria-label="下一页">&rarr;</button></div>
+      <div id="contentWorks"></div>
+      <details><summary>覆盖缺口与补采优先级</summary><div id="contentQueue"></div><a href="blogger-research/内容利用覆盖审计.md" target="_blank">完整覆盖审计</a> · <a href="blogger-research/免费P0交叉核验-2026-10-09.md" target="_blank">本轮P0核验与反证</a> · <a href="blogger-research/单源深加工-X氚-21条.md" target="_blank">单源21条研究卡</a> · <a href="blogger-research/逐作品处理台账.md" target="_blank">143条处理台账</a></details>
+    </section>
+    <section class="audit-band" aria-labelledby="auditHeading">
+      <h2 id="auditHeading">30方向真实资料核验 · 2026-10-02</h2>
+      <p id="auditScope" class="muted"></p>
+      <div class="form"><label>专业 / 职业方向<select id="auditCandidate"></select></label><label>原始来源移除测试<select id="auditExclude"><option value="">保留全部原件</option></select></label></div>
+      <div id="auditResult" role="status"></div><div id="auditStages" class="audit-stages"></div>
+      <h3>当前分数条件内的招生项目</h3><div id="auditSchools"></div>
+      <details><summary>本方向原件、人数范围与反证</summary><div id="auditSources"></div></details>
+      <a href="真实候选核验-2026-10-02.md" target="_blank">完整候选台账与苛刻质疑</a>
+    </section>
+    <section class="audit-band" aria-labelledby="batchHeading">
+      <h2 id="batchHeading">批量匹配 · 当前分数内学校与专业</h2>
+      <p id="batchScope" class="muted"></p>
+      <div class="form"><label>观察阶段<select id="batchStage"><option value="拟聘">拟聘</option><option value="拟录用">拟录用</option><option value="招聘计划">招聘计划（共享名额）</option><option value="工资报价">工资报价（非实际工资）</option><option value="实际录用">实际录用</option><option value="报到">报到</option><option value="6个月留任">6个月留任</option><option value="12个月留任">12个月留任</option></select></label><label>观察学历<select id="batchDegree"><option value="本科">本科</option><option value="硕士">硕士（不能当作本科结果）</option><option value="博士">博士</option><option value="专科">专科</option></select></label><label>移除一份原件<select id="batchExclude"><option value="">保留全部原件</option></select></label></div>
+      <p id="batchStatus" class="risk" role="status"></p>
+      <div class="table-scroll"><table class="trend-table" style="min-width:850px"><thead><tr><th>学校 / 专业 / 组线</th><th>该校精确名单记录</th><th>专业相关市场证据</th><th>出处与口径</th></tr></thead><tbody id="batchBody"></tbody></table></div>
+      <p id="batchDiversity" class="muted" role="status"></p>
+      <details><summary>解析验收与覆盖缺口</summary><div id="batchBoundary"></div><a href="批量匹配验收.md" target="_blank">批量验收报告</a> · <a href="批量覆盖审计.md" target="_blank">批量覆盖审计</a> · <a href="批次接入-2026-10-08.md" target="_blank">跨年接入与排除记录</a> · <a href="批次接入-2026-10-08-第二批.md" target="_blank">林草与烟草接入记录</a> · <a href="批次接入-2026-10-08-第三批.md" target="_blank">企业岗位与月薪报价</a></details>
+    </section>
+    <section class="factor-band" aria-labelledby="factorHeading"><h2 id="factorHeading">逐因子量化评估 · 不合成学校总分</h2>
+      <div class="form"><label>查看学校 / 专业 / 路径<select id="factorProject"></select></label><label>入口因子权重<select id="weightPreset"><option value="balanced">均衡</option><option value="repeat">重跨年需求</option><option value="diversity">重雇主退路</option><option value="custom">自定义</option></select></label><label>希望至少有多少个独立雇主体系<input id="employerTarget" type="number" min="1" max="50" step="1" value="3"></label></div>
+      <label class="weight-toggle"><input id="showWeighted" type="checkbox">显示各维度加权范围</label>
+      <div class="form weights"><label>跨年权重<input id="wRepeat" type="number" min="0" max="100" value="25"></label><label>雇主权重<input id="wDiversity" type="number" min="0" max="100" value="20"></label><label>专业优势权重<input id="wExclusive" type="number" min="0" max="100" value="20"></label><label>竞争权重<input id="wCompetition" type="number" min="0" max="100" value="20"></label><label>供需权重<input id="wSupply" type="number" min="0" max="100" value="15"></label></div>
+      <p id="factorStatus" class="risk" role="status"></p><div class="factor-summary" id="factorSummary"></div>
+      <div class="table-scroll"><table class="trend-table factor-table"><thead><tr><th>维度 / 因子</th><th>原始量与口径</th><th>规则值 / 100</th><th>计算规则与适用范围</th><th>来源与未知项</th></tr></thead><tbody id="factorBody"></tbody></table></div>
+      <details class="method"><summary>模型的质疑、取舍和验证边界</summary><ol><li>入口信号仅描述2022—2026已检索样本，未检索到不等于没有岗位，雇主数不是全国市场覆盖率。</li><li>公务员、事业单位、国企、外企、民企、小微按相同因子核验；所有制只作分层，不直接赋稳定性分。</li><li>未知项不填0或50，不把权重转移给已知项。加权范围把未知项暂放0—100，仅是缺失边界，不是置信区间或就业概率。</li><li>权重、三家雇主锚点、36个月期限均是待校准的偏好规则。区间重叠不能强行排高低；数据覆盖不代表岗位好坏。</li><li>招聘薪酬不计入实际薪酬；同一材料的连续性、人数与结果不算三份独立证据；留任不代表持续就业，跳槽不代表失败。</li><li>体检、生源、专业分流、资格证和当地竞争未通过时，只有历史职业线索，不能算个人成功率；四年后的市场仍可能变化。</li></ol><a href="量化因子模型与挑战记录.md" target="_blank">因子字典、反例与下一轮验证标准</a></details>
+    </section>
+    </div></details>
+    </section>
+    </div></div>
+  </main>
+  <a class="mobile-compare-bar" href="?view=shortlist" data-view="shortlist" hidden><span>已选 <b id="mobileSavedCount">0</b> 项</span><strong>查看对比</strong></a>
+  <footer class="wrap footer"><strong>择据</strong><span>北京招生子集，不是全国完整推荐。正式填报请核对当年招生目录、位次、章程和体检要求。</span><a href="?view=research" data-view="research">查看原始信息</a></footer>
+  <dialog id="projectDialog" aria-labelledby="projectDialogTitle"><div class="dialog-header"><div><span class="muted">学校、专业与毕业后的选择</span><h2 id="projectDialogTitle"></h2></div><button type="button" id="closeProject" class="secondary-button">关闭</button></div><div id="projectDialogBody"></div></dialog>
+  <div id="workspaceStatus" class="sr-only" role="status"></div>
+  <script src="data.js"></script><script src="institution_profiles.js?v=20261014-institution1"></script><script src="admission_rank_2026.js?v=20261013-rank1"></script><script src="admission_history_2022_2026.js?v=20261014-history1"></script><script src="professional_results_2025.js?v=20261014-professional1"></script><script src="evidence.js?v=20261001-quality2"></script><script src="assessment.js?v=20261002-factor1"></script><script src="real_validation.js?v=20261002-audit1"></script><script src="batch_results.js?v=20261002-batch1"></script><script src="salary_estimates.js?v=20261012-salary2"></script>
+  <script src="career_content.js?v=20261018-learning1"></script><script src="career_content_ui.js?v=20261018-learning1"></script><script src="opportunity_benchmark_30.js?v=20261015-benchmark1"></script>
+  <script src="decision_readiness_30.js?v=20261023-pathways8"></script><script src="decision_readiness_ui.js?v=20261030-salary-audit1"></script><script src="project_evidence_coverage.js?v=20261030-coverage1"></script>
+  <script>
+    const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+    const {meta,candidates,projects}=window.GAOBAO_DATA;
+    const institutionProfiles=new Map((window.GAOBAO_INSTITUTION_PROFILES?.profiles||[]).map(p=>[p.schoolCode,p]));
+    const institutionMatch=(p,filter)=>{const s=institutionProfiles.get(p.schoolCode);if(filter==='all')return true;if(!s)return false;return filter==='985'?s.project985:filter==='211'?s.project211:filter==='doubleFirstClass'?s.doubleFirstClass:filter==='industry'?s.specialInstitution:filter==='vocational'?/职业/.test(s.schoolLevelType):filter==='joint'?s.schoolLevelType==='中外合作大学':filter==='military'?s.schoolLevelType==='军队本科院校':true;};
+    const evidence=window.GAOBAO_EVIDENCE;
+    const assessment=window.GAOBAO_ASSESSMENT;
+    const comparison=new Set();
+    let currentRows=[];
+    const projectKey=p=>[p.schoolCode,p.groupCode,p.majorCode].join('-');
+    const evidenceById=Object.fromEntries(evidence.families.flatMap(f=>f.ids.map(id=>[id,f])));
+    const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const validation=window.GAOBAO_VALIDATION;
+    const batch=window.GAOBAO_BATCH;
+    const batchMajorIndex=new Map();
+    if(batch)for(const [id,r] of Object.entries(batch.records)){
+      for(const major of new Set([r.majorCanonical,...(r.eligibleMajors||[])].filter(Boolean))){
+        if(!batchMajorIndex.has(major))batchMajorIndex.set(major,[]);
+        batchMajorIndex.get(major).push({...r,id});
+      }
+    }
+    function batchFacts(p,stage,degree,excluded=''){
+      const plan=stage==='招聘计划';
+      const major=p.major.normalize('NFKC').replace(/\s/g,''),schoolName=p.school.normalize('NFKC').replace(/\s/g,'');
+      const records=(batchMajorIndex.get(major)||[]).filter(r=>r.stage===stage&&r.degreeBand===degree&&r.quantifiable&&!(r.cacheKeys||[r.cacheKey]).includes(excluded));
+      const counted=records.filter(r=>plan?r.unit==='position'&&r.count!==null:r.unit==='person_row'&&r.majorCanonical===major&&r.count!==null);
+      const school=plan?[]:counted.filter(r=>r.institutionCanonical===schoolName);
+      return {records,counted,school,marketCount:counted.reduce((s,r)=>s+r.count,0),schoolCount:school.reduce((s,r)=>s+r.count,0),sources:new Set(counted.map(r=>r.documentId)).size};
+    }
+    function renderBatch(rows=currentRows,invalid=false){
+      if(!batch||!$('#batchScope'))return;
+      if(invalid)rows=[];
+      const s=batch.summary,stage=$('#batchStage').value,degree=$('#batchDegree').value,excluded=$('#batchExclude').value,plan=stage==='招聘计划',salary=stage==='工资报价';
+      $('#batchScope').textContent=`整批${s.uniqueRecords}条统一记录；${s.rosterDocuments??'已接入'}份名单解析${s.parsedPersonRows}条，拒绝${s.parserRejected}条；30方向中${s.coveredDirections}方向关联到同名专业或岗位标签线索，含计划/报价/其他学历；培养方向与资格仍需复核。招生仍是北京子集，并非全国覆盖。`;
+      const items=rows.map(p=>({p,f:batchFacts(p,stage,degree,excluded)}));
+      const covered=items.filter(x=>salary?x.f.records.length:x.f.counted.length).length,schoolCovered=items.filter(x=>x.f.school.length).length;
+      if($('#batchDiversity'))$('#batchDiversity').textContent=invalid?'':salary?'以下为岗位广告，不是毕业生工资样本；不统计薪酬中位数，不折算年薪，不增加录用/报到/留任人数。':batchDiversity(items,plan);
+      $('#batchStatus').textContent=invalid?'输入条件无效，暂不显示批量匹配。':salary?`${rows.length}个当前条件内项目；${covered}个关联到${degree}最低门槛的专业标签岗位报价；无本校工资结果。专业资格、实际工资与稳定性待核。`:`${rows.length}个当前条件内项目；${covered}个有同专业/列明标签${degree}${stage}记录，${schoolCovered}个有同校同专业记录。工资、报到、留任与就业率仍分别核验，未知不填0。`;
+      $('#batchBody').innerHTML=items.length?items.map(({p,f})=>{
+        if(salary){
+          const details=f.records.map(r=>`<div class="record"><a href="${esc(r.sourceUrl)}" target="_blank" rel="noreferrer">${esc(r.employerCanonical)} · ${esc(r.positionCanonical)}</a><small>${esc(r.year)}年材料；目标${r.targetCohortYear??'未知'}届；${esc(r.degreeScope||'学历范围待核')}；${esc(r.locationRaw||'地点未列')}</small><strong>${esc(r.salaryQuote?.raw||'金额未拆')}</strong><small>${esc(r.salaryQuote?.composition||'组成未核')}</small><small>平台标签：${esc(r.majorLabelRaw||r.majorCanonical||'未列')}；${esc(r.majorBasis||'专业匹配待核')}</small><small>岗位正文：${esc(r.requirementsRaw||'未列')}</small><small>职责：${esc(r.responsibilitiesRaw||'未列')}</small><small>${esc(r.countScope)}</small></div>`).join('');
+          return `<tr><td>${esc(p.school)}<strong style="display:block">${esc(p.major)}</strong><small>组线 ${p.cutoff??'未知'} 分</small></td><td>不适用：岗位广告无毕业学校<small>本校实际工资待核</small></td><td>${f.records.length?`${f.records.length}条岗位报价`:'未覆盖'}<small>专业标签不等于资格保证；不表示该校录用</small></td><td>${details?`<details><summary>${f.records.length}条证据 · 工资报价</summary>${details}</details>`:'本批次没有精确报价，不能判为低薪'}</td></tr>`;
+        }
+        const sourceRows=[...f.school,...f.counted.filter(r=>!f.school.some(x=>x.id===r.id))];
+        return `<tr><td>${esc(p.school)}<strong style="display:block">${esc(p.major)}</strong><small>组线 ${p.cutoff??'未知'} 分 · ${esc(degree)}</small></td><td>${plan?'不适用：计划无毕业学校':f.school.length?`${f.schoolCount}条${esc(stage)}记录`:'未覆盖'}<small>本校同届就业率：暂不能估算</small></td><td>${f.counted.length?`${f.marketCount}${plan?'个共享计划名额':'条名单记录'}`:'未覆盖'}<small>${f.sources}份匹配原件${plan?'；不可分摊给本专业或各校':''}</small></td><td>${sourceRows.length?`<details><summary>${sourceRows.length}条证据 · ${esc(stage)}</summary>${sourceRows.map(r=>`<div class="record"><a href="${esc(r.sourceUrl)}" target="_blank" rel="noreferrer">${esc(r.employerCanonical||r.employerGroup||'原始招聘表')} · ${esc(r.rowKey)}</a><small>${esc(r.year)}年材料；毕业届次${r.cohortYear??'未知'}；${esc(r.institutionCanonical||'学校未列')} / ${esc(r.majorCanonical||r.eligibleMajors.join('、'))} / ${esc(r.degreeBand)}</small><small>${esc(r.linkLevel)}；${esc(r.countScope)}</small>${r.majorBasis?`<small>${esc(r.majorBasis)}；${esc(r.degreeScope)}；${esc(r.locationRaw)}</small><small>岗位正文：${esc(r.requirementsRaw)}</small>`:''}</div>`).join('')}</details>`:'本批次无精确证据，不能判为没有就业机会'}</td></tr>`;
+      }).join(''):'<tr><td colspan="4">当前筛选没有项目。</td></tr>';
+      $('#batchBoundary').innerHTML=batch.boundaries.map(x=>`<p>${esc(x)}</p>`).join('')+`<p>复核任务${s.reviewItems}项；表头解析成功不是字段全部准确，也不是就业预测准确率。相邻专业、专业类、未标学历的岗位和叙述型材料仍需复核。</p>`;
+    }
+    function batchDiversity(items,plan=false){
+      if(plan)return '招聘计划含共享名额，不按名额估算名单集中度或就业率。';
+      const records=[...new Map(items.flatMap(x=>x.f.counted).map(r=>[r.id,r])).values()];
+      if(!records.length)return '当前条件下名单覆盖未核，不能判为零就业。';
+      const groups=new Map(),years=new Map();
+      for(const r of records){
+        if(r.employerGroup)groups.set(r.employerGroup,(groups.get(r.employerGroup)||0)+1);
+        if(r.year!=null)years.set(r.year,(years.get(r.year)||0)+1);
+      }
+      const top=map=>[...map].sort((a,b)=>b[1]-a[1]||String(a[0]).localeCompare(String(b[0])))[0];
+      const g=top(groups),y=top(years),pct=n=>(100*n/records.length).toFixed(1)+'%';
+      const missingGroup=records.filter(r=>!r.employerGroup).length,missingYear=records.filter(r=>r.year==null).length;
+      return `当前阶段与学历的同专业名单去重${records.length}条，${years.size}个材料年份、${groups.size}个雇主/系统分组。最大年份：${y?y[0]+'年 '+pct(y[1]):'未知'}；最大分组：${g?g[0]+' '+pct(g[1]):'未知'}。年份未知${missingYear}条、分组未知${missingGroup}条。占比只描述本批样本集中度，不是全国份额、就业率或法人独立性；材料年份不等于毕业届次。`;
+    }
+    function auditFacts(entry,excluded=''){
+      const records=entry.records.filter(r=>r.cacheKey!==excluded);
+      const entrance=records.filter(r=>r.stage==='招聘计划'&&r.majorMatched);
+      return {records,entrance,sourceCount:new Set(records.map(r=>r.cacheKey)).size,
+        entranceSourceCount:new Set(entrance.map(r=>r.cacheKey)).size,
+        years:[...new Set(entrance.map(r=>r.year).filter(Boolean))].sort()};
+    }
+    function renderAudit(rows=currentRows,invalid=false){
+      if(!validation)return;
+      const s=validation.summary;
+      $('#auditScope').textContent=`登记${s.registered}方向；${s.reviewed}方向有已核P0资料（含反例、背景和资格），${s.entrance}方向有专业相关招聘入口；可估算本校同专业就业率：${s.cohortEstimable}。不是30份独立就业样本。`;
+      const entry=validation.candidates.find(e=>e.id===$('#auditCandidate').value);
+      if(!entry)return;
+      const previous=$('#auditExclude').value,unique=[...new Map(entry.records.map(r=>[r.cacheKey,r])).values()];
+      $('#auditExclude').innerHTML='<option value="">保留全部原件</option>'+unique.map(r=>`<option value="${esc(r.cacheKey)}">移除：${esc(r.title)}</option>`).join('');
+      $('#auditExclude').value=unique.some(r=>r.cacheKey===previous)?previous:'';
+      const removed=$('#auditExclude').value,facts=auditFacts(entry,removed);
+      const outcome=removed?`移除后剩${facts.sourceCount}份原件、${facts.entranceSourceCount}份专业相关招聘原件。${facts.entrance.length?'入口仍有原件支持；不代表就业兑现。':'本轮专业招聘入口不再有原件支撑；不等于市场没有机会。'}`:entry.verdict;
+      $('#auditResult').innerHTML=`<h3>${esc(outcome)}</h3><p class="risk">${esc(entry.correction||entry.next)}</p><p class="muted">已核原件 ${facts.sourceCount}；专业入口原件 ${facts.entranceSourceCount}；入口年份 ${facts.years.join('、')||'未核'}。同一岗位表可能支持多个方向，不增加独立数据源。移除测试只重算本台账，不改下方历史因子分。</p>`;
+      const stageCount=stages=>new Set(facts.records.filter(r=>stages.includes(r.stage)).map(r=>r.eventId)).size;
+      $('#auditStages').innerHTML=[['招聘计划',stageCount(['招聘计划'])+'条原文事件'],['签约',stageCount(['学校披露签约','签约'])+'条披露事件（范围见原件）'],['拟聘',stageCount(['拟聘'])+'条披露事件（非报到）'],['拟录用',stageCount(['拟录用','拟接收'])+'条披露事件（非报到）'],['实际录用 / 报到','未核'],['6 / 12个月留任','未核'],['本校就业率 / 实际年收入','未知 / 未知'],['招生计划','在下方项目独立显示'],['持续就业且收入达标的交集','未知']].map(([k,v])=>`<div><small>${esc(k)}</small><b>${esc(v)}</b></div>`).join('');
+      const matches=rows.filter(p=>p.candidateIds.includes(entry.id));
+      $('#auditSchools').innerHTML=invalid?'<p class="risk">输入无效，暂停显示招生匹配。</p>':matches.length?`<p class="muted">当前命中${matches.length}个，列前12个。名称匹配不是课程、方向、体检与岗位资格已通过。</p><ul class="audit-projects">${matches.slice(0,12).map(p=>`<li>${esc(p.school)} · ${esc(p.major)} · 组线${p.cutoff}分；${esc(mapping(p))}</li>`).join('')}</ul>`:'<p class="muted">当前招生子集与筛选条件内无匹配。不能推出全国没有招生项目；不包含全部省份、批次和职教路径。</p>';
+      $('#auditSources').innerHTML=facts.records.length?facts.records.map(r=>`<div class="record"><strong>${esc(r.title)}</strong><br>阶段：${esc(r.stage)}；年度 / 届次：${r.year||'未核'}；发布：${esc(r.publicationDate||'未核')}；${r.page?'PDF第'+r.page+'页':'文字原件'}<br>匹配等级：${esc(r.matchLevel||'未分层')}；目标专业：${r.majorMatched?'相关':'未证实'}；学历：${esc(r.degree||'未分层')}<br><a href="${esc(r.url)}" target="_blank" rel="noreferrer">免费原始资料</a> · <a href="source-audit/${esc(r.cacheKey)}.txt" target="_blank">缓存文字</a><br>人数：${r.count==null?'未拆':r.count}；${esc(r.countScope||'未给可加总范围')}<br><q>${esc(r.quote)}</q>${r.supportingQuotes?.length?`<br>补充摘录：${r.supportingQuotes.map(esc).join('；')}`:''}<p class="risk">${esc(r.note)}</p><code>SHA256 ${esc(r.sha256)}</code></div>`).join(''):'<p class="muted">当前没有可展示的已核原件。不是零就业。</p>';
+    }
+    function familyFor(p){
+      const ids=[...new Set(p.candidateIds.map(id=>evidenceById[id]).filter(Boolean))];
+      // 轻化工程是招生目录名，不能假装已经确定培养方向；
+      // 但制浆造纸字样足以选择对应的证据族。
+      if(p.major.includes('制浆造纸'))return ids.find(f=>f.ids.includes('B06'))||null;
+      if(p.major.includes('皮革'))return ids.find(f=>f.ids.includes('B07'))||null;
+      if(ids.length===1)return ids[0];
+      return null;
+    }
+    function candidateFamilies(p){
+      const ids=[...new Set(p.candidateIds.map(id=>evidenceById[id]).filter(Boolean))];
+      if(p.major.includes('皮革'))return ids.filter(f=>f.ids.includes('B07'));
+      const chosen=familyFor(p);
+      return chosen?[chosen]:ids;
+    }
+    function mapping(p){
+      if(p.candidateIds.length>1||p.major.includes('类'))return '培养方向待核';
+      if(p.candidateIds.includes('B06')&&!/制浆造纸/.test(p.major))return '制浆造纸培养方向待核';
+      return '专业名称对应，课程与招聘资格需复核';
+    }
+    function outlook(p){
+      const f=familyFor(p), m=f?.metrics, candidates=candidateFamilies(p);
+      const best=candidates.slice().sort((a,b)=>(b.metrics.coverageScore||0)-(a.metrics.coverageScore||0))[0];
+      if(!f&&best&&best.metrics.coverageScore>0&&p.candidateIds.length>1)return {code:'mapping',rank:2,label:'职业方向未定，已有候选证据',reason:`候选职业族：${candidates.map(x=>x.name).join('、')}；先核对学校培养方向，不能把候选证据当成本专业结论。`};
+      if(!f)return {code:'unreviewed',rank:0,label:window.GAOBAO_DECISION_READINESS.hasRoleEvidence(projectKey(p))?'已核基础专业岗位，市场规模待核':'尚未核验市场证据',reason:window.GAOBAO_DECISION_READINESS.roleSummary(projectKey(p))||'已有职业线索，尚未完成原文交叉核验。'};
+      if(!m.years.length)return {code:'background',rank:1,label:m.broadYears.length?'行业招人，专业份额待核':'市场材料尚未核实',reason:f.verdict};
+      if(p.candidateIds.includes('B06')&&!/制浆造纸/.test(p.major))return {code:'mapping',rank:2,label:'造纸有岗位，本专业方向待核',reason:f.verdict+'；不能将染整、皮革等方向自动套入造纸结论。'};
+      if(p.candidateIds.includes('B10'))return {code:'mixed',rank:2,label:'企业有本科入口；院所主要硕博',reason:'2025太阳纸业仪表岗接受测控本科；2024、2025计量院电磁兼容岗要求硕士。两条路径不能混成院所本科稳就业。'};
+      if(m.years.length>=2&&m.employerGroups.length>=2)return {code:'repeated',rank:3,label:'跨届、跨雇主的专业入口已证',reason:'存在值得考虑的机会；规模、竞争、实际入职与工作质量仍待核。'};
+      return {code:'limited',rank:2,label:'有专业相关入口，规模待核',reason:f.verdict};
+    }
+    function stageSummary(f){
+      const stages=f?.metrics.stageYears||{};
+      return [['招聘计划',['招聘计划']],['签约',['签约']],['拟聘',['拟聘']],['拟录用',['拟录用','拟接收']],['实际录用 / 报到',['实际录用','报到']],['6/12个月留任',['6个月留任','12个月留任']]]
+        .map(([label,keys])=>label+'：'+([...new Set(keys.flatMap(k=>stages[k]||[]))].join('、')||'未核实')).join('；');
+    }
+    function evidenceDetails(f,p){
+      if(!f)return '<p class="risk">'+(p&&window.GAOBAO_DECISION_READINESS.hasRoleEvidence(projectKey(p))?'已核基础专业岗位原件见本轮深核区；旧职业族年度主面板尚无评分，不表示没有岗位证据。':'此职业线索尚未完成免费P0原文核验。没有证据覆盖评分，不等于没有就业机会。')+'</p>';
+      const m=f.metrics, parts=Object.entries(m.components).map(([k,v])=>esc(k)+' '+v+'/'+evidence.rubric[k]).join(' · ');
+      return `<details class="evidence-detail"><summary>证据评分构成与硬缺口</summary><div>${parts}<br>${esc(m.scoreMeaning)}<br>专业相关年份：${m.years.join('、')||'无'}；雇主/招录单位：${esc(m.employers.join('、')||'未核实')}；独立体系${m.employerGroups.length}个。同一系统保守合并；转发同一简章不增加雇主。<br>${stageSummary(f)}。<br>供需分母：缺；实际薪酬留任：缺。<br><strong>关键缺口：</strong>${esc(f.gap)}</div></details>
+        <details class="evidence-detail"><summary>逐年原文、人数口径与适用条件</summary>${[...f.records,...(f.qualificationRecords||[]),...(f.supplementaryRecords||[])].map(r=>`<div class="record"><strong>${r.year}届/年度 · ${esc(r.stage)} · ${r.verified?'原文已核':'尚未读取原文'}</strong><br><a href="${esc(r.url)}" target="_blank" rel="noreferrer">${esc(r.title)}</a><br>专业匹配：${r.majorMatched?'相关专业已见于原文':'未证明目标专业份额'}；学历：${esc(r.degree||'未分层')}。<br>人数：${r.count??'未给可加总数字'}；范围：${esc(r.countScope||'不可按专业加总')}。<br>${r.publicationDate?'发布/宿主页日期：'+esc(r.publicationDate)+'；所对应届次见上方。<br>':''}${r.quote?`原文摘录：<q>${esc(r.quote)}</q><br>`:''}${r.supportingQuotes?.length?`补充摘录：${r.supportingQuotes.map(esc).join('；')}<br>`:''}<span class="risk">${esc(r.note)}</span>${!r.p0?'<br>非P0，不计入覆盖分。':''}</div>`).join('')}</details>`;
+    }
+    function entryAssessment(p,f){
+      if(window.GAOBAO_DECISION_READINESS.hasRoleEvidence(projectKey(p)))return window.GAOBAO_DECISION_READINESS.roleSummary(projectKey(p));
+      if(!f)return '目标职业族尚无可用于本项目的已核原文。';
+      const related=[...f.records,...(f.supplementaryRecords||[])].filter(r=>r.verified&&r.p0&&r.majorMatched&&['招聘计划','拟聘','拟录用','拟接收'].includes(r.stage));
+      const bachelor=related.filter(r=>/本科/.test(r.degree||'')).map(r=>r.year);
+      const graduate=related.filter(r=>/硕士|博士/.test(r.degree||'')).map(r=>r.year);
+      if(bachelor.length)return `本科入口在${[...new Set(bachelor)].join('、')}年材料中出现；这仍是招聘入口，不是本校毕业生就业率。`;
+      if(graduate.length)return `已核入口主要要求${[...new Set(graduate)].join('、')}年材料中的硕士/博士；本科生需把升学或其他雇主作为主要备选。`;
+      return '学历门槛尚未能从已核原文分层。';
+    }
+    function marketRead(p,f){
+      if(!f)return window.GAOBAO_DECISION_READINESS.roleSummary(projectKey(p))||'证据不足，暂不做市场前景判断。';
+      const m=f.metrics;
+      const years=m.years.length?`${m.years[0]}—${m.years[m.years.length-1]}（${m.years.length}年）`:'暂无专业相关年份';
+      const employers=m.employers.length?`${m.employers.length}个雇主/招录单位、${m.employerGroups.length}个独立体系`:'直接雇主数量未核实';
+      return `${years}有专业相关年度主面板原文；${employers}。${entryAssessment(p,f)}${f.quality?.bachelorAlternative?'另补2025企业本科岗位，单独列示、不沿用院所薪酬或编制。':''}`;
+    }
+    function withinScore(p,score,budget,near){
+      if(budget&&(p.cutoff==null||p.cutoff>score))return false;
+      return !near||(p.cutoff!=null&&score-p.cutoff>=-15&&score-p.cutoff<=30);
+    }
+    function salaryExpectation(){return $('#salaryTarget').value===''?NaN:Number($('#salaryTarget').value);}
+    function jobQuality(p,target,degreePlan,candidateId=''){
+      // Resolve the evidence family from the displayed direction. A family
+      // may intentionally contain adjacent directions (for example B01/A10);
+      // using the first project as a representative would mix their outputs.
+      const f=candidateId?(evidenceById[candidateId]||null):familyFor(p),state=candidateId?{code:(p.candidateIds.length>1||p.major.includes('类'))?'mapping':outlook(p).code}:outlook(p),base=f?.quality;
+      const q=base?.bachelorAlternative&&degreePlan!=='graduate'?base.bachelorAlternative:base;
+      const mappingPending=state.code==='mapping'||p.major.includes('类');
+      const degreeMismatch=state.code==='graduate'&&degreePlan==='bachelor';
+      const applicable=!!q&&!mappingPending&&!degreeMismatch;
+      const salaryCandidate=window.GAOBAO_DECISION_READINESS.salaryFor(projectKey(p));
+      // A shared admission project may map to multiple directions. Never
+      // copy a range explicitly labelled for another candidate id.
+      const salary=salaryCandidate?.integrityBlocked?null:salaryCandidate&&candidateId&&salaryCandidate.candidateId&&salaryCandidate.candidateId!==candidateId?null:salaryCandidate;
+      const salaryLabel=salaryCandidate?.integrityBlocked?'薪酬待核：无来源区间已撤出展示与高薪排序。':salary?`${salaryTextForQuality(salary)}；${salary.degree}口径；${salary.method}，置信度${salary.grade} ${salary.score}/100；${salary.rankingEligible?'可参与同级证据排序':'不参与高薪排序'}。`:salaryCandidate&&candidateId&&salaryCandidate.candidateId&&salaryCandidate.candidateId!==candidateId?`薪酬待核（当前项目区间只标注方向${salaryCandidate.candidateId}，不能套给方向${candidateId}）。`:'薪酬待核，不能判为低薪。';
+      const targetLabel=!Number.isFinite(target)?'未设置收入目标，不判断达标':!salary?'是否达到期望：未知':degreePlan==='graduate'?'研究生收入未建立；这里只显示本科首职基线，不能用于判断读研回报':salary.period==='month'?'是否达到期望：月度数据不换算年度，不能直接比较':!applicable?'是否达到期望：专业/学历映射未通过':salary.lower>=target*10000?'参考区间下界达到期望；兑现待核':salary.upper>=target*10000?'参考区间部分达到期望；兑现待核':'当前参考区间未支持达到期望；不是工资上限';
+      return {role:q?.role||(candidateId?candidates[candidateId]?.jobFamily:null)||merged(p).job,employment:mappingPending?'职业族有线索，培养方向待核':degreeMismatch?'当前已核的是硕士路径，不是本科直接就业':q?.employment||window.GAOBAO_DECISION_READINESS.roleSummary(projectKey(p))||'就业机会尚未核验；缺失不是零就业',
+        salary:salaryLabel+' '+targetLabel,stability:q?.stability||'合同、用工与留任尚未核验',risk:q?.risk||merged(p).gap,
+        salaryRank:applicable&&salary?.rankingEligible?salary.score:0,
+        stabilityRank:applicable?new Set((q.records||[]).filter(r=>r.verified&&r.p0).map(r=>r.cacheKey)).size:0,
+        label:mappingPending?'培养方向待核':degreeMismatch?'读研路径，不匹配本科直就业':applicable?'可核验候选，三项尚未全证':'就业质量材料待补'};
+    }
+    function salaryTextForQuality(s){return s.period==='month'?`${s.lower/10000}—${s.upper/10000}万元/月`:`${s.lower/10000}—${s.upper/10000}万元/年`;}
+    function qualityEvidence(f){
+      const records=[...(f?.quality?.records||[]),...(f?.quality?.bachelorAlternative?.records||[])];
+      if(!records.length)return '';
+      return `<details class="evidence-detail"><summary>薪酬与用工原文（非就业兑现）</summary>${records.map(r=>`<div class="record"><a href="${esc(r.url)}" target="_blank" rel="noreferrer">${esc(r.title)} · ${r.year}</a><br>原文：<q>${esc(r.quote)}</q><br>${r.supportingQuotes.map(esc).join('；')}<br><span class="risk">${esc(r.note)}</span></div>`).join('')}</details>`;
+    }
+    function renderOpportunities(rows,target,degreePlan){
+      // Keep every candidate direction visible, including unreviewed ones.
+      // Group only when the direction and all displayed quality fields match.
+      // This prevents a merged evidence family (for example B01/A10) or a
+      // project-specific salary estimate from being shown as one representative
+      // value for unrelated projects.
+      const groupsByKey=new Map();
+      for(const project of rows){
+        for(const id of new Set(project.candidateIds||[])){
+          const f=evidenceById[id]||null,q=jobQuality(project,target,degreePlan,id);
+          const signature=[id,q.role,q.employment,q.salary,q.stability,q.risk].join('|');
+          if(!groupsByKey.has(signature))groupsByKey.set(signature,{f,id,items:[],q});
+          groupsByKey.get(signature).items.push(project);
+        }
+      }
+      const groups=[...groupsByKey.values()];
+      $('#goalStatus').textContent=`当前${$('#score').value}分、${Number.isFinite(target)?`期望年收入${target}万元`:'未设置收入目标'}：本轮证据中，尚无项目同时证实“高真实就业率、达到期望的实际薪酬、稳定留任”。下表按具体候选职业方向展示；薪酬、学历和稳定性按各项目自身口径计算，未核方向仍标为未知，不是就业保证，也不代表覆盖全部职业。`;
+      $('#opportunityBody').innerHTML=groups.length?groups.map(({f,id,items,q})=>`<tr><td><strong>${esc(q.role)}</strong><small>${esc(q.label)} · 方向 ${esc(id)}</small></td><td>${items.map(p=>`${esc(p.school)} · ${esc(p.major)}（组线${p.cutoff??'待核'}；${esc(decision(p,degreePlan))}）`).join('<br>')}</td><td>${esc(q.employment)}<small>本校同届实际就业率、对口就业率仍待核</small></td><td>${esc(q.salary)}</td><td>${esc(q.stability)}<small>${esc(q.risk)}</small>${qualityEvidence(f)}</td></tr>`).join(''):'<tr><td colspan="5">当前筛选下尚无职业出口线索；不代表没有机会，可在下方查看未核材料。</td></tr>';
+    }
+    function annualState(r){
+      if(!r.verified)return ['partial','原文待核'];
+      if(!r.p0)return ['partial','非P0线索'];
+      if(r.majorMatched)return ['strong',r.stage];
+      if(['招聘计划','招聘活动','签约','雇主自报招聘结果','拟聘','拟录用','拟接收'].includes(r.stage))return ['confirmed',r.stage+'（多专业）'];
+      return ['partial',r.stage];
+    }
+    function renderTrends(){
+      $('#trendBody').innerHTML=evidence.families.map(f=>`<tr><td><strong>${esc(f.name)}</strong></td><td>${esc(f.verdict)}</td><td><span class="trend-score">${f.metrics.coverageScore}/100</span><small>专业相关材料 ${f.metrics.years.length}/5年</small></td><td><div class="trend-years">${f.records.map(r=>{const [state,label]=annualState(r);return `<a class="trend-year ${state}" href="${esc(r.url)}" target="_blank" rel="noreferrer"><strong>${r.year}</strong>${esc(label)}</a>`;}).join('')}</div></td><td>${esc(f.gap)}${evidenceDetails(f)}</td></tr>`).join('');
+    }
+    const weightIds={repeat:'wRepeat',diversity:'wDiversity',exclusive:'wExclusive',competition:'wCompetition',supply:'wSupply'};
+    function readWeights(){return Object.fromEntries(Object.entries(weightIds).map(([k,id])=>[k,$('#'+id).value===''?NaN:Number($('#'+id).value)]));}
+    function factorModel(p){return assessment.assess(p,familyFor(p),salaryExpectation(),$('#degreePlan').value,outlook(p).code==='mapping'||p.major.includes('类'),Number($('#employerTarget').value));}
+    function boundsText(b){return b.coverage===0?'全未知，暂不能评分':`${Math.floor(b.lower)}—${Math.ceil(b.upper)}/100（可约束权重${Math.round(b.coverage)}%）`;}
+    function factorScore(f){return f.score===null?'未知，不补值':Array.isArray(f.score)?f.score.map(x=>x.toFixed(1)).join('—'):f.score.toFixed(1);}
+    function renderFactors(){
+      const p=currentRows.find(p=>projectKey(p)===$('#factorProject').value),weights=readWeights();
+      if(!p){$('#factorStatus').textContent='当前没有可查看的项目。';$('#factorBody').innerHTML='';$('#factorSummary').innerHTML='';return;}
+      const model=factorModel(p),valid=Object.values(weights).every(w=>Number.isFinite(w)&&w>=0&&w<=100)&&Object.values(weights).some(w=>w>0);
+      $('#factorBody').innerHTML=model.factors.map(f=>{const records=f.records.filter(r=>r.verified&&r.p0),unique=[...new Map(records.map(r=>[r.cacheKey,r])).values()];return `<tr><td><small>${esc(f.group)}</small><strong>${esc(f.name)}</strong></td><td>${esc(f.raw)}</td><td>${factorScore(f)}<small>${f.weight?'维度内权重 '+(weights[f.id]??f.weight):'背景量，不参加加权'}</small></td><td>${esc(f.formula)}<small>${esc(f.scope)}</small></td><td>${unique.length?`P0原文${unique.length}份（非独立市场样本）<details><summary>来源</summary>${unique.map(r=>`<div><a href="${esc(r.url)}" target="_blank" rel="noreferrer">${r.year} · ${esc(r.title)}</a><br>摘录：${esc(r.quote)}</div>`).join('')}</details>`:'对应结果原文待核'}<small>${esc(f.missing)}</small></td></tr>`;}).join('');
+      const sensitivity=assessment.scenarios(model).map(s=>s.name+' '+boundsText(s.result)).join('；');
+      const sourceSensitivity=assessment.sourceStress(p,familyFor(p),salaryExpectation(),$('#degreePlan').value,model.mappingPending,Number($('#employerTarget').value)).map(s=>s.title+' → '+boundsText(s.result)).join('；');
+      $('#factorStatus').textContent=!valid?'入口权重须为0—100，至少一项大于0；暂不加权。':model.mappingPending?'培养方向待核；职业族材料不能作为本专业数值。':`${model.route}。当前仅量化历史已见信号，实际就业、实际薪酬和工作持续性仍未知；不是个人就业概率。`;
+      $('#factorSummary').innerHTML=Object.entries(model.groupsByName).map(([name,factors])=>{const b=assessment.weightedBounds(factors,name==='入口信号'&&valid?weights:{});return `<div><small>${esc(name)}</small><b>${$('#showWeighted').checked&&valid?esc(boundsText(b)):factors.filter(f=>f.score!==null).length+'/'+factors.length+'因子有数值边界'}</b><small>${b.coverage===0?'缺结果分母/可比观测':'描述当前材料，不是就业优劣'}</small></div>`;}).join('')+($('#showWeighted').checked&&valid?`<p class="muted">权重敏感性（预设）：${esc(sensitivity)}。范围不代表精确排名；全部未知时不显示0分。</p><details class="evidence-detail"><summary>逐一删除原文后的入口范围（均衡权重）</summary>${esc(sourceSensitivity||'没有可删除的适配原文')}<div>删除后全未知不能当作0分；同附件各条摘录一并删除。此检查不处理全部渠道的系统性缺失。</div></details>`:'');
+    }
+    function syncFactors(rows){
+      currentRows=rows;const previous=$('#factorProject').value;
+      $('#factorProject').innerHTML=rows.map(p=>`<option value="${esc(projectKey(p))}">${esc(p.school+' · '+p.major)}</option>`).join('');
+      if(rows.some(p=>projectKey(p)===previous))$('#factorProject').value=previous;
+      renderFactors();
+    }
+    function subjectsFit(requirement,selected){
+      if(requirement.includes('不限'))return true;
+      const required=['物理','化学','生物','政治','历史','地理'].filter(x=>requirement.includes(x));
+      return /一门即可|或/.test(requirement)?required.some(x=>selected.has(x)):required.every(x=>selected.has(x));
+    }
+    function hardships(p){
+      const text=p.candidateIds.map(id=>[candidates[id].jobFamily,candidates[id].gap].join(' ')).join(' '),tags=[];
+      if(/倒班|生产|运行/.test(text))tags.push('倒班'); if(/地域集中|偏远|基层/.test(text))tags.push('偏远');
+      if(/野外|井下|外业|矿山/.test(text))tags.push('野外'); if(/海船|海上/.test(text))tags.push('海上');return tags;
+    }
+    function band(diff){
+      if(diff==null)return ['无组线参考','warn'];
+      if(diff>=15)return ['高于组线≥15分',''];
+      if(diff>=5)return ['高于组线5—14分',''];
+      if(diff>=-5)return ['组线附近±5分','warn'];
+      if(diff>=-15)return ['低于组线6—15分','warn'];
+      return ['低于组线>15分','warn'];
+    }
+    function merged(p){
+      const list=p.candidateIds.map(id=>candidates[id]);
+      return {list,job:[...new Set(list.map(x=>x.jobFamily))].join(' / '),gap:[...new Set(list.map(x=>x.gap))].join('；')};
+    }
+    function schoolOutcome(p){
+      if(window.GAOBAO_DECISION_READINESS?.projectFor(projectKey(p))?.historicalOutcome)return ['已核历史专业届次指标',window.GAOBAO_DECISION_READINESS.historical(projectKey(p))+'；去向落实口径不是纯就业率或未来概率；报到与留任仍未核。'];
+      if(p.school==='中国民用航空飞行学院'&&p.major==='大气科学')return ['首届结果待核','2022年首次招生；大气科学2026届结果待核。不借用应用气象学就业率。'];
+      if(p.school==='中国民用航空飞行学院'&&p.major.startsWith('应用气象学'))return ['学校自报历史可参考','学校专业介绍自报近6届就业率83.3%；就业与升学的分母和口径未拆清，非逐届独立审计，也不代表报到与留任。'];
+      return ['本校专业结果待核','本校本专业的毕业、升学、签约、报到和6/12个月留任尚未形成可比分母。'];
+    }
+    function schoolEvidence(p){
+      if(p.school!=='中国民用航空飞行学院')return '';
+      const rows=(evidence.schoolRecords||[]).filter(r=>p.major==='大气科学'?r.title.includes('大气科学'):r.title.includes('应用气象学'));
+      if(!rows.length)return '';
+      return `<details class="evidence-detail"><summary>学校专业材料（培养/自报结果，单独于市场证据）</summary>${rows.map(r=>`<div class="record"><strong>${esc(r.title)} · ${r.verified?'原文已核':'待核'}</strong><br><a href="${esc(r.url)}" target="_blank" rel="noreferrer">打开学校原文</a><br>摘录：<q>${esc(r.quote)}</q><br><span class="risk">${esc(r.note)}</span></div>`).join('')}</details>`;
+    }
+    function decision(p,degreePlan){
+      const f=familyFor(p),state=outlook(p);
+      if(state.code==='mapping'||p.major.includes('类'))return '先核培养方向，暂不判断本人岗位适配';
+      if(!f?.metrics.years.length)return '市场证据待补，不能判为差就业';
+      if(f.quality?.bachelorAlternative)return degreePlan==='graduate'?'企业本科入口 / 院所硕士路径，需分别比较':'可列企业本科候选；不能套用院所编制与薪酬';
+      const related=f.records.filter(r=>r.verified&&r.p0&&r.majorMatched);
+      if(related.some(r=>/本科/.test(r.degree||'')))return '可列候选：已有本科入口，需核地点与竞争';
+      if(related.some(r=>/硕士|博士/.test(r.degree||'')))return degreePlan==='bachelor'?'与本科直就业目标不匹配：当前已核的是硕博入口':degreePlan==='graduate'?'可列读研路径：升学和招聘均需竞争':'先确定学历规划：当前已核入口主要是硕博';
+      return '学历门槛待核';
+    }
+    function courseRead(p){
+      if(p.school!=='中国民用航空飞行学院')return mapping(p);
+      if(p.major==='大气科学')return '航空气象学院；2022设立。侧重基础理论、数值天气预报、Python与数据分析；学校列出的就业方向是培养目标，不是毕业结果。';
+      if(p.major.startsWith('应用气象学'))return '航空气象学院；2016设立。侧重航空气象、签派、航行情报与业务实习。与大气科学共享核心课程、2024目录同属本科气象类，但不能共享就业率。';
+      return mapping(p);
+    }
+    function renderComparison(){
+      if(window.parentComparison){window.parentComparison();return;}
+      const degreePlan=$('#degreePlan').value,score=Number($('#score').value),tuition=$('#tuition').value===''?Infinity:Number($('#tuition').value);
+      const employerTarget=Number($('#employerTarget').value);
+      if(!Number.isInteger(employerTarget)||employerTarget<1||employerTarget>50){$('#compareBody').innerHTML='<p class="risk">雇主目标须为1—50整数；已选项目保留。</p>';return;}
+      const selected=new Set($$('#subjects input:checked').map(x=>x.value)),accepted=new Set($$('#conditions input:checked').map(x=>x.value));
+      const choices=[...comparison].map(key=>projects.find(p=>projectKey(p)===key)).filter(Boolean);
+      if(!choices.length){$('#compareBody').innerHTML='<p class="muted">尚未选择项目。</p>';return;}
+      const fields=[['学校与专业',p=>`${p.school} · ${p.major}`],['当前条件',p=>[!subjectsFit(p.subjectRequirement,selected)?'选科不符':'选科符合',typeof p.tuition==='number'&&p.tuition>tuition?'超学费上限':'学费在上限内或待核',hardships(p).some(t=>!accepted.has(t))?'有不接受的职业条件线索':'职业条件需逐岗复核'].join('；')],['分数参考',p=>p.cutoff==null?'无组线':`专业组${p.cutoff}分；分差${score-p.cutoff}，不代表录取概率`],['学费 / 年',p=>p.tuition==null?'待核':p.tuition+'元'],['家庭路径判断',p=>decision(p,degreePlan)],['培养差别',courseRead],['历史职业入口',p=>marketRead(p,familyFor(p))],['就业兑现',p=>schoolOutcome(p)[1]],['证据覆盖',p=>familyFor(p)?familyFor(p).metrics.coverageScore+'/100；职业族规则分，不是本校概率':'尚未评分'],['最大缺口',p=>familyFor(p)?.gap||merged(p).gap]];
+      const quality=p=>jobQuality(p,salaryExpectation(),degreePlan);
+      fields.splice(2,0,['分数预算',p=>withinScore(p,score,$('#budget').checked,$('#near').checked)?'符合当前组线参考范围；不是录取保证':'不在当前分数预算/范围内'],['就业入口',p=>quality(p).employment],['薪酬与目标',p=>quality(p).salary],['稳定性',p=>quality(p).stability]);
+      const exemplar=factorModel(choices[0]);
+      exemplar.factors.forEach(f=>fields.push([f.name,p=>{const row=factorModel(p).factors.find(x=>x.id===f.id);return row.raw+'；规则值：'+factorScore(row);} ]));
+      if($('#showWeighted').checked){const weights=readWeights();if(Object.values(weights).every(w=>Number.isFinite(w)&&w>=0&&w<=100)&&Object.values(weights).some(w=>w>0))fields.push(['入口加权范围',p=>boundsText(assessment.weightedBounds(factorModel(p).groupsByName['入口信号'],weights))+'；重叠不判优劣']);}
+      $('#compareBody').innerHTML=`<table class="compare-table"><caption>已选${choices.length}项；按当前家庭条件重算</caption><tbody>${fields.map(([name,read])=>`<tr><th scope="row">${esc(name)}</th>${choices.map(p=>`<td>${esc(read(p))}</td>`).join('')}</tr>`).join('')}<tr><th scope="row">操作</th>${choices.map(p=>`<td><button type="button" data-remove="${esc(projectKey(p))}">移除 ${esc(p.school)} ${esc(p.major)}</button></td>`).join('')}</tr></tbody></table>`;
+    }
+    function render(){
+      const rawScore=$('#score').value,score=Number(rawScore),rawTuition=$('#tuition').value,tuition=rawTuition===''?Infinity:Number(rawTuition),query=$('#query').value.trim().toLowerCase();
+      const target=salaryExpectation(),degreePlan=$('#degreePlan').value,institutionFilter=$('#institutionFilter').value;
+      const employerTarget=Number($('#employerTarget').value);
+      if(rawScore===''||!Number.isFinite(score)||score<0||score>750||!Number.isFinite(tuition)&&tuition!==Infinity||tuition<0||($('#salaryTarget').value!==''&&(!Number.isFinite(target)||target<0||target>1000))||!Number.isInteger(employerTarget)||employerTarget<1||employerTarget>50){
+        $('#scope').textContent='请输入0—750分、非负学费、0—1000万元收入期望（可留空）；雇主目标须为1—50整数。';$('#summary').innerHTML='';$('#sortExplain').textContent='输入有效后显示排序口径。';$('#results').innerHTML='';$('#compareBody').innerHTML='<p class="risk">请先修正输入条件，已选项目仍保留。</p>';$('#opportunityBody').innerHTML='';$('#goalStatus').textContent='输入条件无效，暂不显示机会结论。';syncFactors([]);renderAudit([],true);renderBatch([],true);window.renderCareerContent?.([],true);window.syncParentWorkspace?.(true);return;
+      }
+      const selected=new Set($$('#subjects input:checked').map(x=>x.value)),accepted=new Set($$('#conditions input:checked').map(x=>x.value));
+      let rows=projects.filter(p=>subjectsFit(p.subjectRequirement,selected)&&(!Number.isFinite(p.tuition)||p.tuition<=tuition)&&hardships(p).every(x=>accepted.has(x))&&institutionMatch(p,institutionFilter));
+      rows=rows.map(p=>{const f=familyFor(p),diff=p.cutoff==null?null:score-p.cutoff,m=merged(p);return {...p,diff,m,f,outlook:outlook(p),coverage:f?.metrics.coverageScore??null,band:band(diff)};})
+        .filter(p=>withinScore(p,score,$('#budget').checked,$('#near').checked)&&(!query||[p.school,p.major,p.m.job,p.m.gap,...(institutionProfiles.get(p.schoolCode)?.industryDomains||[])].join(' ').toLowerCase().includes(query))&&(!$('#marketOnly').checked||candidateFamilies(p).some(f=>f.metrics.years.length)));
+      const auditScope=$('#readinessFilter').value;
+      if(auditScope!=='all')rows=rows.filter(p=>!!window.GAOBAO_DECISION_READINESS.projectFor(projectKey(p))===(auditScope==='audited'));
+      const sort=$('#sort').value;
+      rows.sort((a,b)=>sort==='signal'?b.outlook.rank-a.outlook.rank||Math.abs(a.diff??999)-Math.abs(b.diff??999):sort==='evidence'?(b.coverage??-1)-(a.coverage??-1)||b.outlook.rank-a.outlook.rank:sort==='school'?a.schoolCode.localeCompare(b.schoolCode):Math.abs(a.diff??999)-Math.abs(b.diff??999)||b.outlook.rank-a.outlook.rank);
+      if(sort==='salary'){
+        // A salary order is meaningful only when the shared audit rule confirms
+        // at least two independent, traceable and verified employer pay sources.
+        const rank=p=>window.GAOBAO_DECISION_READINESS.salaryFor(projectKey(p));
+        const cash12=s=>s.period==='month'?(s.lower+s.upper)*6:(s.lower+s.upper)/2;
+        rows.sort((a,b)=>Number(!!rank(b)?.rankingEligible)-Number(!!rank(a)?.rankingEligible)||(rank(a)?.rankingEligible&&rank(b)?.rankingEligible?rank(b).score-rank(a).score||cash12(rank(b))-cash12(rank(a)):0));
+      }
+      if(sort==='stable')rows.sort((a,b)=>jobQuality(b,target,degreePlan).stabilityRank-jobQuality(a,target,degreePlan).stabilityRank||b.outlook.rank-a.outlook.rank||Math.abs(a.diff??999)-Math.abs(b.diff??999));
+      const displaySchoolCount=new Set(projects.map(p=>p.schoolCode)).size;
+      $('#scope').textContent=`当前入池${displaySchoolCount}所学校的${meta.projectCount}个项目（扫描目录${meta.schoolCount}所）；命中${rows.length}个，显示${Math.min(120,rows.length)}个`;
+      const salaryComparable=rows.filter(p=>window.GAOBAO_DECISION_READINESS.salaryFor(projectKey(p))?.rankingEligible).length;
+      const stableComparable=rows.filter(p=>jobQuality(p,target,degreePlan).stabilityRank>0).length;
+      const schoolOutcomeRows=rows.filter(p=>{const proposed=batchFacts(p,'拟聘',degreePlan==='graduate'?'硕士':'本科'),accepted=batchFacts(p,'拟录用',degreePlan==='graduate'?'硕士':'本科');return proposed.schoolCount||accepted.schoolCount;}).length;
+      $('#summary').innerHTML=`<span><b>${rows.length}</b> 个项目符合初筛</span><span><b>${rows.filter(x=>x.f?.metrics.years.length).length}</b> 个有旧职业族分年入口</span><span><b>${rows.filter(x=>window.GAOBAO_DECISION_READINESS.hasRoleEvidence(projectKey(x))).length}</b> 个有基础专业岗位样本</span><span><b>${schoolOutcomeRows}</b> 个有同校同专业名单线索</span><span><b>${salaryComparable}</b> 个工资区间可同口径排序</span>`;
+      const salaryAudit=window.GAOBAO_DECISION_READINESS.salaryEvidenceAudit();
+      $('#salaryAuditBody').innerHTML=`<p><strong>本页筛选范围：</strong>${rows.length}个项目中，${rows.filter(p=>window.GAOBAO_DECISION_READINESS.salaryFor(projectKey(p))?.evidenceKind==='employer_quote').length}个有招聘/雇主报价线索，${rows.filter(p=>window.GAOBAO_DECISION_READINESS.salaryFor(projectKey(p))?.evidenceKind==='creator_claim').length}个主要依据博主主张，${rows.filter(p=>window.GAOBAO_DECISION_READINESS.salaryFor(projectKey(p))?.evidenceKind==='model_only').length}个为无直接数字来源的模型范围。</p><p><strong>全库${salaryAudit.projects}项目：</strong>雇主报价线索${salaryAudit.counts.employer_quote}项；博主工资主张${salaryAudit.counts.creator_claim}项；机器定位线索${salaryAudit.counts.machine_locator}项；无直接来源模型范围${salaryAudit.counts.model_only}项；因来源异常不展示金额${salaryAudit.counts.untraceable}项。已核毕业生实发工资${salaryAudit.actualSalaryVerified}项。</p><p><strong>排序门槛：</strong>至少两个独立、可回源且经核的雇主薪酬来源。当前${salaryAudit.comparable}项达到门槛；招聘报价不等于工资兑现，博主标题、机器定位和无原始来源的估计不会参与高薪排序。卡片保留可用的金额线索，并标明其证据类型和边界。</p>`;
+      const coverage=window.GAOBAO_PROJECT_EVIDENCE_COVERAGE;
+      if(coverage){const c=coverage.summary;$('#projectCoverageSummary').innerHTML=`<p>覆盖数代表资料状态，不代表项目质量或就业概率；工资底库截至${esc(coverage.salarySourceDataAsOf)}。</p><div class="project-coverage-grid"><div><strong>${c.currentAdmissionCutoff}/${c.projectCount}</strong><span>有2026组线</span></div><div><strong>${c.strictHistoricalAdmission}/${c.projectCount}</strong><span>有严格匹配的往年组线</span></div><div><strong>${c.professionalDistribution}/${c.projectCount}</strong><span>有专业分档资料</span></div><div><strong>${c.projectsWithExplicitMajorMatchedJobGroup}/${c.projectCount}</strong><span>有明确专业匹配的岗位原文</span></div><div><strong>${c.projectsWithReviewedStageObservation}/${c.projectCount}</strong><span>有复核过的本校名单观察</span></div><div><strong>${c.highPayComparable}/${c.projectCount}</strong><span>达到独立工资比较门槛</span></div><div><strong>${c.actualArrivalVerified}/${c.projectCount}</strong><span>实际报到已核</span></div><div><strong>${c.retention6MonthsVerified}/${c.projectCount} · ${c.retention12MonthsVerified}/${c.projectCount}</strong><span>6 / 12个月留任已核</span></div></div><p><strong>名单复核进度：</strong>${c.preliminaryStageListProjects}个项目在批量索引中出现拟聘/拟录用候选记录；${c.projectsWithReviewedStageObservation}个已经逐条复核，另${c.stageListProjectsPendingReview}个尚未进入深核，不作为已核结果。</p><p>工资参考：招聘/雇主报价${c.salaryEvidenceKinds.employer_quote}项、博主主张${c.salaryEvidenceKinds.creator_claim}项、模型范围${c.salaryEvidenceKinds.model_only}项、来源异常并隐藏${c.salaryEvidenceKinds.untraceable}项；已核毕业生实发工资${salaryAudit.actualSalaryVerified}项。</p>`;}
+      const sortCopy={signal:`按岗位入口材料排序；${rows.filter(x=>x.f?.metrics.years.length).length}项有分年材料。招聘和拟聘不代表报到、留任或就业概率。`,fit:'按孩子分数与专业组线的距离排序；组线不是专业录取线，也没有换算录取概率。',stable:`按已核用工材料数量排序；当前${stableComparable}项至少有一份适用材料。所有制不直接等于稳定，实际合同和留任仍待核。`,salary:`当前${salaryComparable}项达到独立雇主薪酬比较门槛；收入排序暂不提供高低结论。卡片仍显示有边界的招聘报价或职业族估计，不代表毕业生实发工资。`,evidence:'按资料完整度排序，只便于优先核查；证据覆盖高不表示更好就业。',school:'按学校代码排列，未表达学校或专业优劣。'};
+      $('#sortExplain').textContent=sortCopy[sort]||'';
+      $('#results').innerHTML=rows.length?rows.slice(0,120).map(card).join(''):'<div class="empty">当前条件没有匹配项目。可调整分数范围、学费或关键词。</div>';
+      renderOpportunities(rows,target,degreePlan);
+      syncFactors(rows);
+      renderAudit(rows);
+      renderBatch(rows);
+      window.renderCareerContent?.(rows);
+      renderComparison();
+      window.syncParentWorkspace?.();
+    }
+    function card(p){return window.parentProjectCard?window.parentProjectCard(p):detailCard(p);}
+    function detailCard(p){
+      const tags=hardships(p),school=schoolOutcome(p),cutoff=p.cutoff==null?'未匹配':p.cutoff+'分',diff=p.diff==null?'—':(p.diff>=0?'+':'')+p.diff;
+      const q=jobQuality(p,salaryExpectation(),$('#degreePlan').value);
+      return `<article class="card"><div class="topline"><div><div class="school">${esc(p.school)}（${p.schoolCode}）· ${esc(p.region)}</div><div class="major">${esc(p.major)} <small>${esc(p.majorCode)}</small></div><span class="pill ${p.band[1]}">${p.band[0]}</span> <span class="pill warn">${esc(mapping(p))}</span></div><div class="muted">专业组 ${esc(p.groupCode)}</div></div>
+        <label class="compare-pick"><input type="checkbox" data-compare="${esc(projectKey(p))}" ${comparison.has(projectKey(p))?'checked':''}>加入对比：${esc(p.school)} ${esc(p.major)}</label>
+        <p><strong>按你的学历规划：</strong>${esc(decision(p,$('#degreePlan').value))}</p><p class="muted">培养与资格：${esc(courseRead(p))}</p>
+        <div class="verdict caution"><div><span>就业入口（非就业率）</span><strong>${esc(q.employment)}</strong></div><div><span>薪酬与期望</span><strong>${esc(q.salary)}</strong></div><div><span>稳定性线索</span><strong>${esc(q.stability)}</strong></div><p>${esc(q.label)}。${esc(q.risk)}。排序只表示核验优先级，不是工作质量或成功率排名。</p></div>
+        ${qualityEvidence(p.f)}
+        <div class="verdict ${p.outlook.code==='repeated'?'':'caution'}"><div><span>岗位前景结论</span><strong>${p.outlook.label}</strong></div><div><span>本校专业就业把握</span><strong>${school[0]}</strong></div><div><span>职业族证据覆盖度</span><strong>${p.coverage==null?'尚未评分':p.coverage+'/100'}</strong></div><p>${esc(p.outlook.reason)} ${esc(school[1])}</p></div>
+        <p class="muted">旧职业族年度主面板：专业相关年份${p.f?.metrics.years.join('、')||'未核实'}。招聘/签约/拟录用/报到/留任口径：${stageSummary(p.f)}。新增基础专业岗位与计划对应另见本轮深核区，不计入此面板分数。职业族证据覆盖分不代表本校专业就业概率；0分只表示此面板材料缺失。</p>
+        ${schoolEvidence(p)}
+        ${evidenceDetails(p.f,p)}
+        <div class="facts"><div><span>专业组投档线</span><b>${cutoff}</b></div><div><span>你的分差</span><b>${diff}</b></div><div><span>招生计划（非就业人数）</span><b>${p.plan??'未知'}人</b></div><div><span>选科要求</span><b>${esc(p.subjectRequirement)}</b></div><div><span>学费</span><b>${typeof p.tuition==='number'?p.tuition+'元':esc(p.tuition??'未知')}</b></div><div><span>职业条件线索</span><b>${tags.join('、')||'待核'}</b></div></div>
+        <div class="career"><strong>可能的职业入口：${esc(p.m.job)}</strong><ul><li>历史市场信号：${esc(marketRead(p,p.f||candidateFamilies(p)[0]))}</li><li>机会机制线索：${esc(p.m.list.map(x=>x.mechanism).join('；'))}</li><li class="risk">待证质疑：${esc(p.m.gap)}</li><li>倒班、地域等条件为职业族线索，具体学校培养与具体岗位条件仍需核对。</li></ul></div>
+        <div class="sources"><a href="${esc(p.planSource)}" target="_blank" rel="noreferrer">官方招生计划</a><a href="${esc(meta.cutoffArticle)}" target="_blank" rel="noreferrer">官方投档线</a>${window.GAOBAO_CONTENT?p.candidateIds.map(id=>{const topic=window.GAOBAO_CONTENT.topics.find(t=>t.id===id);return topic?`<a href="#contentHeading" data-career-topic="${esc(id)}">职业内容与核验 · ${topic.workIds.length}线索</a>`:'';}).join(''):''}${p.school==='中国民用航空飞行学院'?`<a href="https://www.cafuc.edu.cn/jwcx/info/1185/${p.major==='大气科学'?'1526':'1527'}.htm" target="_blank" rel="noreferrer">${p.major==='大气科学'?'专业培养介绍':'培养与学校自报历史去向'}</a>`:''}</div></article>`;
+    }
+    $('#run').addEventListener('click',render);
+    $('#results').addEventListener('click',event=>{const id=event.target.dataset.careerTopic;if(id)window.openCareerTopic?.(id);});
+    if(batch){
+      const sources=[...new Map(Object.values(batch.records).filter(r=>r.cacheKey&&(r.unit==='person_row'||r.unit==='position')).map(r=>[r.cacheKey,r])).values()];
+      $('#batchExclude').innerHTML='<option value="">保留全部原件</option>'+sources.map(r=>`<option value="${esc(r.cacheKey)}">${esc(r.stage+' · '+(r.employerGroup||'招聘表')+' · '+r.cacheKey)}</option>`).join('');
+      ['batchStage','batchDegree','batchExclude'].forEach(id=>$('#'+id).addEventListener('change',render));
+    }
+    if(validation){
+      $('#auditCandidate').innerHTML=validation.candidates.map(e=>`<option value="${esc(e.id)}">${esc(e.id+' '+e.major+' · '+(e.entrance?'招聘入口已核':e.reviewed?'资料已核 / 非入口':'尚未核验'))}</option>`).join('');
+      $('#auditCandidate').value='A02';
+      $('#auditCandidate').addEventListener('change',()=>{$('#auditExclude').value='';renderAudit();});
+      $('#auditExclude').addEventListener('change',()=>renderAudit());
+    }
+    $('#factorProject').addEventListener('change',renderFactors);
+    $('#showWeighted').addEventListener('change',()=>{renderFactors();renderComparison();});
+    $('#weightPreset').addEventListener('change',()=>{const presets={balanced:[25,20,20,20,15],repeat:[45,10,15,15,15],diversity:[10,40,15,20,15]},values=presets[$('#weightPreset').value];if(values)Object.values(weightIds).forEach((id,i)=>$('#'+id).value=values[i]);renderFactors();renderComparison();});
+    Object.values(weightIds).forEach(id=>$('#'+id).addEventListener('input',()=>{$('#weightPreset').value='custom';renderFactors();renderComparison();}));
+    ['score','tuition','query','sort','institutionFilter','degreePlan','salaryTarget','employerTarget','readinessFilter'].forEach(id=>$('#'+id).addEventListener('input',render));
+    $$('input[type=checkbox]').forEach(x=>x.addEventListener('change',render));
+    $('#results').addEventListener('change',event=>{
+      if(window.parentProjectCard)return;
+      const key=event.target.dataset.compare;if(!key)return;
+      if(event.target.checked&&comparison.size>=4&&!comparison.has(key)){event.target.checked=false;$('#compareMessage').textContent='最多比较4项，请先移除一项。';return;}
+      event.target.checked?comparison.add(key):comparison.delete(key);$('#compareMessage').textContent='';renderComparison();
+    });
+    $('#compareBody').addEventListener('click',event=>{const button=event.target.closest('[data-remove]'),key=button?.dataset.remove;if(key){const selector=button.closest('.compare-brief')?'.compare-brief [data-remove]':'[data-remove]',position=[...$('#compareBody').querySelectorAll(selector)].indexOf(button);comparison.delete(key);$('#compareMessage').textContent='';render();const buttons=$('#compareBody').querySelectorAll(selector);(buttons[Math.min(position,buttons.length-1)]||$('#compareBody').querySelector('[data-view]'))?.focus();}});
+    renderTrends();render();
+  </script>
+  <script src="professional_paths.js?v=20261018-review1"></script>
+  <script src="professional_paths_ui.js?v=20261023-pathways8"></script>
+  <script src="family_decision.js?v=20261028-mobile3"></script>
+  <script src="parent_workspace.js?v=20261030-mobile-decision3"></script>
+</body>
+</html>
