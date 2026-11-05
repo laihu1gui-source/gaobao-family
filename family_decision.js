@@ -5,7 +5,7 @@
   const opinions=[['unknown','还不了解'],['keep','愿意继续了解'],['no','不愿选择']];
   const textFields=['studentReason','parentReason','tradeoff','question','contact','nextAction','teacher'];
   const validKeys=new Set(window.GAOBAO_DATA.projects.map(project=>`${project.schoolCode}-${project.groupCode}-${project.majorCode}`));
-  let state={mode:'demo',conditions:{},notes:{},demoNotes:{}},cards=[],saveFailed=false;
+  let state={mode:'mine',conditions:{},notes:{},demoNotes:{}},cards=[],saveFailed=false;
   const escape=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   try{
     const saved=JSON.parse(localStorage.getItem(storageKey)||'null');
