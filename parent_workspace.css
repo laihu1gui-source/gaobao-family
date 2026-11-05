@@ -190,7 +190,6 @@ dialog{border:0;border-radius:12px;width:min(1000px,calc(100% - 40px));max-heigh
   .intro-kicker{display:none}
   .intro h1{font-size:23px;line-height:1.3;margin-bottom:7px}
   .intro p:not(.intro-kicker){font-size:12px;line-height:1.55}
-  .coverage-note{display:none}
   .profile-panel{padding:15px 14px 14px;margin-bottom:17px}
   .profile-title h2{font-size:16px}
   .profile-save{display:none}
