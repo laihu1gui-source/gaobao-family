@@ -256,6 +256,8 @@ dialog{border:0;border-radius:12px;width:min(1000px,calc(100% - 40px));max-heigh
 }
 
 @media(max-width:560px){.choice-metrics .salary-evidence-label{grid-column:2}}
+.install-action{margin-top:10px}.install-action button{min-height:42px}.install-action p{margin:8px 0 0;padding:8px 10px;border-left:3px solid var(--green);background:var(--pale);color:var(--ink);font-size:12px;line-height:1.55}
+@media(max-width:560px){.install-action button{width:100%;min-height:44px}}
 
 /* 2026-10-30 decision pass: show answers first, keep the audit in the detail view. */
 .profile-incomplete #discoverView{display:none}

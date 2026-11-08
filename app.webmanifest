@@ -1,0 +1,26 @@
+{
+  "id": "./",
+  "name": "择据 · 升学与职业选择",
+  "short_name": "择据",
+  "description": "按高考分数查找学校专业，了解毕业去向、岗位、收入和稳定性证据。",
+  "lang": "zh-CN",
+  "start_url": "./?profileMode=mine",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6fa",
+  "theme_color": "#183653",
+  "icons": [
+    {
+      "src": "app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
