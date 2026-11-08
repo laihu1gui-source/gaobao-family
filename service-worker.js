@@ -1,4 +1,4 @@
-const CACHE = 'zeju-pwa-2026-11-08-8';
+const CACHE = 'zeju-pwa-2026-11-08-9';
 const SHELL = ['./index.html', './app.webmanifest', './app-icon.svg', './app-icon-180.png', './app-icon-192.png', './app-icon-512.png'];
 
 self.addEventListener('install', event => {
